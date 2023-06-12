@@ -20,7 +20,7 @@
                                 <div class="content_col_left p-2 d-flex align-items-center ">
                                     <!-- Il tuo account -->
                                     <div class="foto">
-                                        <img class="avatar bg-light" src="./img/avatar_io.jpg" alt="io">
+                                        <img class="avatar " src="./img/avatar_io.jpg" alt="io">
                                     </div>
                                     <h5 class="name">Sofia</h5>
                                 </div>
@@ -53,7 +53,7 @@
                             <div class="col-12 ">
                                 <!-- Contatti -->
                                 <ul class="list-unstyled ">
-                                    <li class="border-top border-secondary-subtle d-flex justify-content-between" v-for="(contact, index) in contacts">
+                                    <li class="border-top border-secondary-subtle d-flex justify-content-between" v-for="(contact, index) in contacts" @click="selectContacts(index)">
                                         <div class="foto d-flex p-2">
                                             <img class="avatar" :src="contact.avatar" alt="contact">
                                             <div class="name">
@@ -67,31 +67,40 @@
                             </div>
                         </div>
 
-                        <div class="col content_right d-flex  flex-column">
+                        <div class="col content_right d-flex  flex-column chat ">
                             
                             <!-- Inizio contenuto della chat -->
-                            <div class="col-12 d-flex justify-content-between">
+                            <div class="col-12 d-flex justify-content-between background_crem border-start">
                                 <!-- con chi stai chattando -->
-                                <div class="content_col_left d-flex">
-                                    <div class="foto"></div>
-                                    <div class="name"></div>
+                                <div class="content_col_left d-flex p-1 align-items-center">
+                                    <div class="foto">
+                                        <img class="avatar" :src="contacts[selectContact].avatar" alt="contact">
+                                    </div>
+                                    <div class="name">{{contacts[selectContact].name}}
+                                        <p class="text-secondary font_custom">Ultimo accesso oggi alle 12.00</p>
+                                    </div>
                                 </div>
-                                <div class="content_col_right"></div>
+                                <div class="content_col_right  text-secondary p-3 fs-5">
+                                    <span class="mx-3"><i class="fa-sharp fa-solid fa-magnifying-glass "></i></span>
+                                    <span><i class="fa-solid fa-paperclip"></i></span>
+                                    <span class="mx-3"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                                </div>
                             </div>
-
-                                <div class="chat">
-                                    <!-- chat -->
-                                    <div class="col-10 d-flex justify-content-start">
-                                        <div class="received">ciao</div>
-                                    </div>
-                                    <div class="col-10 d-flex justify-content-end">
-                                        <div class="sent">ciao</div>
-                                    </div>
+                            <div class="pt-5 col-9 align-self-center">
+                                <!-- chat -->
+                                <div v-for="(message, index) in contacts[selectContact].messages">
+                                  <div v-if="contacts[selectContact].messages[index].status === 'received'" class="col-12 d-flex justify-content-start">
+                                    <div class="received m-1">{{ contacts[selectContact].messages[index].message }}</div>
+                                  </div>
+                                  <div v-else class="col-12 d-flex justify-content-end">
+                                    <div class="sent m-1">{{ contacts[selectContact].messages[index].message }}</div>
+                                  </div>
                                 </div>
+                              </div>
 
-                                <div class="mt-auto p-2">
+                                <div class="mt-auto p-2 background_crem">
                                     <!-- input messaggio -->
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center  text-secondary">
                                         <i class="fa-regular fa-face-smile "></i>
                                         <input  type="text" placeholder="messagio" class="p-2 col mx-3 border border-0">
                                         <i class="fas fa-microphone"></i>
