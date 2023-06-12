@@ -12,7 +12,7 @@
 <body>
     <!-- Creiamo id per vue -->
     <div id="app">
-        <div class="container_fix">           
+        <div class="container_fix ">           
                     <div class="d-flex">
                         <!-- Inizio contenuto contatti -->
                         <div class="content_left d-flex flex-column">
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 ">
+                            <div class="col-12 scrollbar  ">
                                 <!-- Contatti -->
                                 <ul class="list-unstyled ">
                                     <li class="border-top border-secondary-subtle d-flex justify-content-between" v-for="(contact, index) in contacts" @click="selectContacts(index)">
@@ -70,7 +70,7 @@
                         <div class="col content_right d-flex  flex-column chat ">
                             
                             <!-- Inizio contenuto della chat -->
-                            <div class="col-12 d-flex justify-content-between background_crem border-start">
+                            <div class="col-12 d-flex justify-content-between background_crem border-start sticky-top">
                                 <!-- con chi stai chattando -->
                                 <div class="content_col_left d-flex p-1 align-items-center">
                                     <div class="foto">
@@ -98,7 +98,7 @@
                                 </div>
                               </div>
 
-                                <div class="mt-auto p-2 background_crem">
+                                <div class="mt-auto p-2 background_crem sticky-bottom">
                                     <!-- input messaggio -->
                                     <div class="d-flex align-items-center  text-secondary">
                                         <i class="fa-regular fa-face-smile "></i>

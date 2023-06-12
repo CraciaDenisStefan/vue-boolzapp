@@ -4,16 +4,19 @@
     box-sizing: border-box;
 }
 body{
-    background-color: aliceblue;
+    height: 100vh;
+    background: linear-gradient(to top, rgb(185, 185, 185), rgb(158, 160, 158) 50%, rgb(216, 216, 214) 75%, rgb(25, 212, 103) 75%);
+   
 }
+/* Contenitore  */
 .container_fix{
-    background-color: rgb(231, 231, 50);
-    position: absolute;
+    position: fixed;
     width: 80%;
     top: 5%;
     left: 50%;
     transform: translate(-50%);
 }
+/* Contenuto sinistra */
 .content_left{
     background-color: white;
     width: 500px;
@@ -47,12 +50,16 @@ body{
 }
 .background_crem{
     background-color: rgb(241, 241, 241);
+ 
 }
 .notice{
     background-color: rgb(43, 186, 230);
 }
+/* Contenuto destra */
 .chat{
     background-image: url(../img/mine.jpg);
+    overflow-y: auto;
+    max-height: 95vh
 }
 .received, .sent{
     min-width: 30%;
@@ -64,4 +71,30 @@ body{
 }
 .received{
     background-color: white;
+}
+.scrollbar{
+    overflow-y: auto;
+    max-height: 65vh;
+}
+
+
+
+@media screen and (max-height: 600px){
+    .scrollbar{
+        max-height: 60vh;
+    }
+   
+
+}
+@media screen and (max-height: 450px){
+    .scrollbar{
+        max-height: 45vh;
+    }
+
+}
+@media screen and (max-height: 350px){
+    .scrollbar{
+        max-height: 30vh;
+    }
+
 }
