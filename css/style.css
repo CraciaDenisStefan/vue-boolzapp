@@ -58,6 +58,9 @@ body{
 .cursor_pointer{
     cursor: pointer;
 }
+.nascondi{
+    display: none;
+}
 /* Contenuto destra */
 .chat{
     background-image: url(../img/mine.jpg);

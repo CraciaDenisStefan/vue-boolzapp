@@ -168,6 +168,7 @@ createApp({
         ],
         selectContact: 0,
         newMessage:'',
+        search:'',
     }
   },
   methods: {
@@ -197,6 +198,21 @@ createApp({
             this.contacts[this.selectContact].messages.push(objRep);
         }},1000)
     },
+    searchBar(){
+        let searchUser = this.search.toLowerCase(); 
+
+        for(let i=0;i<this.contacts.length; i++){
+            let contact= this.contacts[i]
+            if(contact.name.toLowerCase().includes(searchUser)){
+                contact.visible=true
+            }else{
+                contact.visible=false
+            }
+        }
+
+    }
+
+    
     
 
 },

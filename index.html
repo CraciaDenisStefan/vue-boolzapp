@@ -46,14 +46,14 @@
                                 <!-- ricerca -->
                                 <div class="col d-flex align-items-center search_contact">
                                     <i class="fa-sharp fa-solid fa-magnifying-glass px-3"></i>
-                                    <input class="form-control me-2 border-0 search_background text-secondary" type="search" placeholder="Cerca o inizia una nuova chat" aria-label="Search">
+                                    <input v-model="search" @input="searchBar" class="form-control me-2 border-0 search_background text-secondary" type="text" placeholder="Cerca o inizia una nuova chat" >
                                 </div>
                             </div>
 
                             <div class="col-12 scrollbar  ">
                                 <!-- Contatti -->
                                 <ul class="list-unstyled ">
-                                    <li class="border-top border-secondary-subtle d-flex justify-content-between cursor_pointer" v-for="(contact, index) in contacts" @click="selectContacts(index)">
+                                    <li class="border-top border-secondary-subtle  justify-content-between cursor_pointer" v-for="(contact, index) in contacts" @click="selectContacts(index)" :class="contact.visible ? 'd-flex': 'nascondi'">
                                         <div class="foto d-flex p-2">
                                             <img class="avatar" :src="contact.avatar" alt="contact">
                                             <div class="name">
