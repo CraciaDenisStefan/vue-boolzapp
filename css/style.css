@@ -55,6 +55,9 @@ body{
 .notice{
     background-color: rgb(43, 186, 230);
 }
+.cursor_pointer{
+    cursor: pointer;
+}
 /* Contenuto destra */
 .chat{
     background-image: url(../img/mine.jpg);

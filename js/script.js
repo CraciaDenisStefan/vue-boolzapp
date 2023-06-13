@@ -23,7 +23,7 @@ createApp({
                         date: '10/01/2020 16:15:22',
                         message: 'Tutto fatto!',
                         status: 'received'
-                    }
+                    },
                 ],
             },
             {
@@ -45,7 +45,7 @@ createApp({
                         date: '20/03/2020 16:35:00',
                         message: 'Mi piacerebbe ma devo andare a fare la spesa.',
                         status: 'sent'
-                    }
+                    },
                 ],
             },
             {
@@ -67,7 +67,7 @@ createApp({
                         date: '28/03/2020 16:15:22',
                         message: 'Ah scusa!',
                         status: 'received'
-                    }
+                    },
                 ],
             },
             {
@@ -84,7 +84,7 @@ createApp({
                         date: '10/01/2020 15:50:00',
                         message: 'Si, ma preferirei andare al cinema',
                         status: 'received'
-                    }
+                    },
                 ],
             },
             {
@@ -101,7 +101,7 @@ createApp({
                         date: '10/01/2020 15:50:00',
                         message: 'Va bene, stasera la sento',
                         status: 'received'
-                    }
+                    },
                 ],
             },
             {
@@ -123,7 +123,7 @@ createApp({
                         date: '10/01/2020 15:51:00',
                         message: 'Nessuna nuova, buona nuova',
                         status: 'sent'
-                    }
+                    },
                 ],
             },
             {
@@ -140,7 +140,7 @@ createApp({
                         date: '10/01/2020 15:50:00',
                         message: 'Grazie per avermelo ricordato, le scrivo subito!',
                         status: 'received'
-                    }
+                    },
                 ],
             },
             {
@@ -162,16 +162,42 @@ createApp({
                         date: '10/01/2020 15:51:00',
                         message: 'OK!!',
                         status: 'received'
-                    }
+                    },
                 ]
             }
         ],
         selectContact: 0,
+        newMessage:'',
     }
   },
   methods: {
     selectContacts(index){
         this.selectContact = index
-    }
+    },
+    newMessages() {
+        let obj={
+            date: '10/01/2020 15:51:00',
+            message: this.newMessage,
+            status: 'sent',
+        }
+      
+        if (obj.message.length > 0 ) {
+            this.contacts[this.selectContact].messages.push(obj);
+        }
+
+        this.newMessage=''
+
+        setTimeout(()=>{
+            let objRep={
+                date: '10/01/2020 15:51:00',
+                message: 'ok',
+                status: 'received',
+            }
+            if (obj.message.length > 0 ) {
+            this.contacts[this.selectContact].messages.push(objRep);
+        }},1000)
+    },
+    
+
 },
 }).mount('#app')
