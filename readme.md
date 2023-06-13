@@ -9,3 +9,14 @@ Milestone 1
 Milestone 3:
 1 - Creiamo una funzione con la quale aggiungiamo un nuovo messaggio tramite input e invio
 2 - Con un timeout aggiungiamo una risposta 'ok' dopo un secondo dal invio del messagio utente 
+
+Milestone 4 :
+1 - Creiamo una funzione con la quale li diciamo che 
+    1.1 - Se il nome contiene i carratteri scritti nel imput 
+        1.1.1 - visible diventa true
+    1.2 - Altrimenti 
+        1.2.1 - diventa false
+2 - Chiamiamo la funzione tramite invio nel html 
+3 - Creiamo una classe 
+    3.1 - mostra se visible è true 
+    3.2 - nascondi se visible e false 
