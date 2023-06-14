@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.3.0/luxon.min.js" integrity="sha512-KKbQg5o92MwtJKR9sfm/HkREzfyzNMiKPIQ7i7SZOxwEdiNCm4Svayn2DBq7MKEdrqPJUOSIpy1v6PpFlCQ0YA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Creiamo id per vue -->
+    <div id="app">
+        <div class="container_fix ">           
+                    <div class="d-flex">
+                        <!-- Inizio contenuto contatti -->
+                        <div class="content_left d-flex flex-column">
+                            <div class="col-12 d-flex justify-content-between background_crem">
+                                <div class="content_col_left p-2 d-flex align-items-center ">
+                                    <!-- Il tuo account -->
+                                    <div class="foto">
+                                        <img class="avatar " src="./img/avatar_io.jpg" alt="io">
+                                    </div>
+                                    <h5 class="name">Sofia</h5>
+                                </div>
+                                <div class="content_col_right text-secondary p-3 fs-5 ">
+                                    <span class="mx-3"><i class="fa-solid fa-circle-notch"></i></span>
+                                    <span><i class="fa-solid fa-message"></i></span>
+                                    <span class="mx-3"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex p-2 align-items-center notice">
+                                <!-- notifiche -->
+                                <div class="notice_icon">
+                                    <i class="fas fa-bell-slash color_custom"></i>
+                                </div>
+                                <div class="p-2">
+                                    <div class="fs-5">Ricevi notifiche di nuovi messaggi</div>
+                                    <a class="notice_on text-secondary" href="#">Attiva notifiche desktop</a>
+                                </div>
+                            </div>
+
+                            <div class="col-12 p-2 background_crem">
+                                <!-- ricerca -->
+                                <div class="col d-flex align-items-center search_contact">
+                                    <i class="fa-sharp fa-solid fa-magnifying-glass px-3"></i>
+                                    <input v-model="search" @input="searchBar" class="form-control me-2 border-0 search_background text-secondary" type="text" placeholder="Cerca o inizia una nuova chat" >
+                                </div>
+                            </div>
+
+                            <div class="col-12 scrollbar  ">
+                                <!-- Contatti -->
+                                <ul class="list-unstyled ">
+                                    <li class="border-top border-secondary-subtle  justify-content-between cursor_pointer"  v-for="(contact, index) in contacts" @click="selectContacts(index)" :class="[contact.visible ? 'd-flex': 'nascondi', selectContact === index ? 'active' : '']" >
+                                        <div class="foto d-flex p-2">
+                                            <img class="avatar" :src="contact.avatar" alt="contact">
+                                            <div class="name">
+                                                <h5>{{contact.name}}</h5>
+                                                <p class="text-secondary font_custom text_break">{{contact.messages[contact.messages.length - 1].message}}</p>
+                                            </div>
+                                        </div>              
+                                        <div class="content_col_right text-secondary font_custom p-2" >
+                                            {{contact.messages[contact.messages.length - 1].date}}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col content_right d-flex  flex-column chat ">
+                            
+                            <!-- Inizio contenuto della chat -->
+                            <div class="col-12 d-flex justify-content-between background_crem border-start sticky-top">
+                                <!-- con chi stai chattando -->
+                                <div class="content_col_left d-flex p-1 align-items-center">
+                                    <div class="foto">
+                                        <img class="avatar" :src="contacts[selectContact].avatar" alt="contact">
+                                    </div>
+                                    <div class="name">{{contacts[selectContact].name}}
+                                        <p class="text-secondary font_custom">Ultimo accesso oggi alle {{contacts[selectContact].messages[contacts[selectContact].messages.length - 1].date}}</p>
+                                    </div>
+                                </div>
+                                <div class="content_col_right  text-secondary p-3 fs-5">
+                                    <span class="mx-3"><i class="fa-sharp fa-solid fa-magnifying-glass "></i></span>
+                                    <span><i class="fa-solid fa-paperclip"></i></span>
+                                    <span class="mx-3"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                                </div>
+                            </div>
+                            <div class="pt-5 col-9 align-self-center">
+                                <!-- chat -->
+                                <div v-for="(message, index) in contacts[selectContact].messages">
+                                  <div v-if="contacts[selectContact].messages[index].status === 'received'" class="col-12 d-flex justify-content-start ">
+                                    <div class="received m-1 text-break">{{ contacts[selectContact].messages[index].message }}
+                                        <div class="data_message text-secondary">
+                                            {{ contacts[selectContact].messages[index].date }}
+                                          </div>
+                                    </div>
+                                  </div>
+                                  <div v-else class="col-12 d-flex justify-content-end text-break">
+                                    <div class="sent m-1">{{ contacts[selectContact].messages[index].message }}
+                                        <div class="data_message text-secondary">
+                                            {{ contacts[selectContact].messages[index].date }}
+                                          </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                                <div class="mt-auto p-2 background_crem sticky-bottom border-start" >
+                                    <!-- input messaggio -->
+                                    <div class="d-flex align-items-center  text-secondary">
+                                        <i class="fa-regular fa-face-smile "></i>
+                                        <input  type="text" placeholder="messagio" class="p-2 col mx-3 border border-0" v-model="newMessage" @keyup.enter="newMessages">
+                                        <i class="fas fa-microphone"></i>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    
+<script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+<script src="./js/script.js"></script>
+</body>
+</html>

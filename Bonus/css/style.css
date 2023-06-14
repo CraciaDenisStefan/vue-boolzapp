@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(to top, rgb(185, 185, 185), rgb(158, 160, 158) 50%, rgb(216, 216, 214) 75%, rgb(25, 212, 103) 75%);
+   
+}
+/* Contenitore  */
+.container_fix{
+    position: fixed;
+    width: 80%;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%);
+}
+/* Contenuto sinistra */
+.content_left{
+    background-color: white;
+    width: 500px;
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 5px;
+}
+.notice_icon{
+    padding: 9px 10px;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 10px;
+}
+.color_custom{
+    color: rgb(43, 186, 230);
+}
+.search_contact{
+    background-color: white;
+}
+.notice_on{
+    font-size: 15px;
+    text-decoration: none;
+}
+.font_custom{
+    font-size: 12px;
+}
+.background_crem{
+    background-color: rgb(236, 233, 233);
+ 
+}
+.notice{
+    background-color: rgb(43, 186, 230);
+}
+.cursor_pointer{
+    cursor: pointer;
+}
+.nascondi{
+    display: none;
+}
+/* Contenuto destra */
+.chat{
+    background-image: url(../img/mine.jpg);
+    overflow-y: auto;
+    max-height: 95vh
+}
+.received, .sent{
+    min-width: 30%;
+    border-radius: 10px;
+    padding: 10px ;
+}
+.sent{
+    background-color: rgb(173, 252, 149);  
+}
+.received{
+    background-color: white;
+}
+.scrollbar{
+    overflow-y: auto;
+    max-height: 65vh;
+}
+.data_message{
+    text-align-last: right;
+    font-size: 10px;
+}
+.text_break{
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 200px; 
+    white-space: nowrap;
+}
+.active{
+    background-color: rgb(218, 215, 215);
+}
+
+
+@media screen and (max-height: 600px){
+    .scrollbar{
+        max-height: 60vh;
+    }
+   
+
+}
+@media screen and (max-height: 450px){
+    .scrollbar{
+        max-height: 45vh;
+    }
+
+}
+@media screen and (max-height: 350px){
+    .scrollbar{
+        max-height: 30vh;
+    }
+
+}
