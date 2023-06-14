@@ -54,12 +54,12 @@
                             <div class="col-12 scrollbar  ">
                                 <!-- Contatti -->
                                 <ul class="list-unstyled ">
-                                    <li class="border-top border-secondary-subtle  justify-content-between cursor_pointer" v-for="(contact, index) in contacts" @click="selectContacts(index)" :class="contact.visible ? 'd-flex': 'nascondi'">
+                                    <li class="border-top border-secondary-subtle  justify-content-between cursor_pointer"  v-for="(contact, index) in contacts" @click="selectContacts(index)" :class="[contact.visible ? 'd-flex': 'nascondi', selectContact === index ? 'active' : '']" >
                                         <div class="foto d-flex p-2">
                                             <img class="avatar" :src="contact.avatar" alt="contact">
                                             <div class="name">
                                                 <h5>{{contact.name}}</h5>
-                                                <p class="text-secondary font_custom">Ultimo messaggio inviato</p>
+                                                <p class="text-secondary font_custom text_break">{{contact.messages[contact.messages.length - 1].message}}</p>
                                             </div>
                                         </div>              
                                         <div class="content_col_right text-secondary font_custom p-2" >
@@ -93,13 +93,13 @@
                                 <!-- chat -->
                                 <div v-for="(message, index) in contacts[selectContact].messages">
                                   <div v-if="contacts[selectContact].messages[index].status === 'received'" class="col-12 d-flex justify-content-start ">
-                                    <div class="received m-1">{{ contacts[selectContact].messages[index].message }}
+                                    <div class="received m-1 text-break">{{ contacts[selectContact].messages[index].message }}
                                         <div class="data_message text-secondary">
                                             {{ contacts[selectContact].messages[index].date }}
                                           </div>
                                     </div>
                                   </div>
-                                  <div v-else class="col-12 d-flex justify-content-end">
+                                  <div v-else class="col-12 d-flex justify-content-end text-break">
                                     <div class="sent m-1">{{ contacts[selectContact].messages[index].message }}
                                         <div class="data_message text-secondary">
                                             {{ contacts[selectContact].messages[index].date }}
@@ -109,7 +109,7 @@
                                 </div>
                               </div>
 
-                                <div class="mt-auto p-2 background_crem sticky-bottom">
+                                <div class="mt-auto p-2 background_crem sticky-bottom border-start" >
                                     <!-- input messaggio -->
                                     <div class="d-flex align-items-center  text-secondary">
                                         <i class="fa-regular fa-face-smile "></i>
