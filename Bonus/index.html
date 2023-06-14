@@ -91,23 +91,27 @@
                             </div>
                             <div class="pt-5 col-9 align-self-center">
                                 <!-- chat -->
-                                <div v-for="(message, index) in contacts[selectContact].messages">
-                                  <div v-if="contacts[selectContact].messages[index].status === 'received'" class="col-12 d-flex justify-content-start ">
-                                    <div class="received m-1 text-break">{{ contacts[selectContact].messages[index].message }}
-                                        <div class="data_message text-secondary">
-                                            {{ contacts[selectContact].messages[index].date }}
+                                <div v-for="(message, index) in contacts[selectContact].messages" >
+                                    <!-- messaggio -->
+                                    <div  class="col-12 d-flex " :class="contacts[selectContact].messages[index].status === 'received' ? 'justify-content-start hover_drop' : (contacts[selectContact].messages[index].status === 'sent' ? 'justify-content-end hover_drop' : 'justify-content-center')">
+                                        <div  :class="contacts[selectContact].messages[index].status === 'received' ?'received m-1 text-break ' :(contacts[selectContact].messages[index].status === 'sent' ? 'sent m-1' : 'empty m-1')">
+                                            {{ contacts[selectContact].messages[index].message }}
+                                            <div class="data_message text-secondary">
+                                                {{ contacts[selectContact].messages[index].date }}
+                                            </div>
+                                        </div>
+                                        <!-- Dropdown cancella chat -->
+                                        <div class="dropdown-center">
+                                            <button class=" button_drop dropdown-toggle"  data-bs-toggle="dropdown" >
+                                              </button>
+                                            <ul class="dropdown-menu">
+                                              <li><a class="dropdown-item" href="#">Info Messaggio</a></li>
+                                              <li><a class="dropdown-item" href="#" @click="deleteMessage(index)">Cancella Mesaggio</a></li>
+                                            </ul>
                                           </div>
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div v-else class="col-12 d-flex justify-content-end text-break">
-                                    <div class="sent m-1">{{ contacts[selectContact].messages[index].message }}
-                                        <div class="data_message text-secondary">
-                                            {{ contacts[selectContact].messages[index].date }}
-                                          </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                            </div>
 
                                 <div class="mt-auto p-2 background_crem sticky-bottom border-start" >
                                     <!-- input messaggio -->
@@ -121,7 +125,7 @@
                     </div>
         </div>
     </div>
-    
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>    
 <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
 <script src="./js/script.js"></script>
 </body>

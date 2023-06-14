@@ -67,7 +67,7 @@ body{
     overflow-y: auto;
     max-height: 95vh
 }
-.received, .sent{
+.received, .sent, .empty{
     min-width: 30%;
     border-radius: 10px;
     padding: 10px ;
@@ -94,6 +94,23 @@ body{
 }
 .active{
     background-color: rgb(218, 215, 215);
+}
+.button_drop{
+    background-color: unset;
+    border: none;
+    position: absolute;
+    top: 3px;
+    right: 10px;
+
+}
+.dropdown-center{
+    display: none;
+}
+.hover_drop:hover .dropdown-center{
+    display: block;
+}
+.empty{
+    background-color: rgb(228, 222, 222);
 }
 
 

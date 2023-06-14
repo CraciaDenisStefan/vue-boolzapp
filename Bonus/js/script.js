@@ -197,6 +197,7 @@ createApp({
             if (obj.message.length > 0 ) {
             this.contacts[this.selectContact].messages.push(objRep);
         }},1000)
+
     },
     searchBar(){
         let searchUser = this.search.toLowerCase(); 
@@ -215,7 +216,18 @@ createApp({
          let date = luxon.DateTime;
          let today = date.now().toLocaleString(date.DATETIME_SHORT_WITH_SECONDS)
          return today
-    }
+    },
+    deleteMessage(index){
+        this.contacts[this.selectContact].messages.splice(index, 1);
+        let objVuoto={
+            date: this.dateNow(),
+            message: 'La tua chat e vuota',
+            status: 'empty',
+        }
+        if(this.contacts[this.selectContact].messages.length === 0){
+            this.contacts[this.selectContact].messages.push(objVuoto)
+        }
+    },
 
     
     
