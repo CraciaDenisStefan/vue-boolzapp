@@ -82,7 +82,10 @@ body{
     overflow-y: auto;
     max-height: 65vh;
 }
-
+.data_message{
+    text-align-last: right;
+    font-size: 10px;
+}
 
 
 @media screen and (max-height: 600px){

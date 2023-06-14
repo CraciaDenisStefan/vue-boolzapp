@@ -168,7 +168,7 @@ createApp({
         ],
         selectContact: 0,
         newMessage:'',
-        search:'',
+        search:'',          
     }
   },
   methods: {
@@ -177,7 +177,7 @@ createApp({
     },
     newMessages() {
         let obj={
-            date: '10/01/2020 15:51:00',
+            date: this.dateNow(),
             message: this.newMessage,
             status: 'sent',
         }
@@ -190,7 +190,7 @@ createApp({
 
         setTimeout(()=>{
             let objRep={
-                date: '10/01/2020 15:51:00',
+                date: this.dateNow(),
                 message: 'ok',
                 status: 'received',
             }
@@ -210,6 +210,11 @@ createApp({
             }
         }
 
+    },
+    dateNow(){
+         let date = luxon.DateTime;
+         let today = date.now().toLocaleString(date.DATETIME_SHORT_WITH_SECONDS)
+         return today
     }
 
     
